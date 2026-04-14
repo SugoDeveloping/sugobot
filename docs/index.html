@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SugoBot Docs</title>
+  <meta name="description" content="Wiki completa di SugoBot con setup, moduli, comandi e funzionamento per chi usa il bot su Discord.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <div class="page-glow page-glow-a"></div>
+  <div class="page-glow page-glow-b"></div>
+
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Apri menu documentazione">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">SB</div>
+        <div>
+          <p class="eyebrow">Wiki / Docs</p>
+          <h1>SugoBot</h1>
+        </div>
+      </div>
+
+      <label class="search-box">
+        <span>Cerca nella wiki</span>
+        <input id="searchInput" type="search" placeholder="ticket, giveaway, verify, whitelist...">
+      </label>
+
+      <div class="lang-switch" aria-label="Selettore lingua">
+        <a class="active" href="./index.html">IT</a>
+        <a href="./en.html">EN</a>
+        <a href="./es.html">ES</a>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav">
+        <a href="#overview">Panoramica</a>
+        <a href="#start">Setup Rapido</a>
+        <a href="#architecture">Come Funziona</a>
+        <a href="#premium">Free vs Premium</a>
+        <a href="#general-setup">Configurazione Generale</a>
+        <a href="#moderation">Moderazione</a>
+        <a href="#tickets">Ticket</a>
+        <a href="#assistenza">Assistenza</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#roles-access">Ruoli e Accessi</a>
+        <a href="#live-growth">Live e Community</a>
+        <a href="#applications">Whitelist e Struttura</a>
+        <a href="#ops">Owner e Operazioni</a>
+        <a href="#automation">Funzioni Automatiche</a>
+        <a href="#database">Dati Salvati</a>
+        <a href="#commands">Comandi</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="doc-section hero" id="overview" data-search-section="overview panoramica wiki home discord bot docs premium tickets moderation newsletter giveaway whitelist verify twitch reaction roles assistenza server builder">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Documentation Hub</p>
+          <h2>Wiki completa del bot Discord, pronta da usare come sito web.</h2>
+          <p class="lead">
+            Questa documentazione spiega come usare il bot dentro Discord: configurazione iniziale,
+            moduli disponibili, flussi interattivi, funzioni automatiche e reference dei comandi.
+          </p>
+
+          <div class="hero-badges">
+            <span>Slash Commands</span>
+            <span>Config per server</span>
+            <span>40+ comandi</span>
+            <span>IT / EN / ES</span>
+            <span>Webhook Branding</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#start">Apri setup</a>
+            <a class="button button-secondary" href="#commands">Vedi tutti i comandi</a>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <div class="stats-grid">
+            <article class="stat-card" data-search-item="slash commands comandi">
+              <strong>41</strong>
+              <span>Comandi slash disponibili</span>
+            </article>
+            <article class="stat-card" data-search-item="setup onboarding configurazione">
+              <strong>1</strong>
+              <span>Comando centrale per il setup base: <code>/setup</code></span>
+            </article>
+            <article class="stat-card" data-search-item="schedulers automazioni background jobs">
+              <strong>3 + 1</strong>
+              <span>Funzioni automatiche piu rotazione stato</span>
+            </article>
+            <article class="stat-card" data-search-item="premium modules features">
+              <strong>10</strong>
+              <span>Moduli premium sbloccabili</span>
+            </article>
+          </div>
+
+          <div class="info-note">
+            <strong>Cosa copre questa wiki</strong>
+            <p>
+              Primo setup nel server, configurazioni da admin, moduli premium, comportamento del bot,
+              dati che vengono salvati e reference operativa dei comandi.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="start" data-search-section="start setup rapido primi passi server admin permessi configurazione">
+        <div class="section-head reveal">
+          <p class="eyebrow">Quick Start</p>
+          <h3>Primi passi nel server</h3>
+        </div>
+
+        <div class="two-col">
+          <article class="panel reveal">
+            <h4>Cosa serve prima di iniziare</h4>
+            <ul class="bullet-list">
+              <li>Il bot deve essere gia presente nel server.</li>
+              <li>Chi configura il bot dovrebbe avere permessi amministratore o equivalenti.</li>
+              <li>Per i moduli avanzati il bot deve poter gestire canali, ruoli, messaggi, timeout, webhook e allegati.</li>
+              <li>Per Twitch e richiesto che il proprietario del bot abbia collegato il modulo live.</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h4>Ordine consigliato</h4>
+            <ol class="number-list">
+              <li>Configura il bot con <code>/setup</code>.</li>
+              <li>Controlla i canali log e il messaggio di benvenuto.</li>
+              <li>Attiva i moduli premium necessari con <code>/activate</code> se hai una licenza.</li>
+              <li>Pubblica pannelli e configurazioni dei moduli che vuoi usare davvero nel server.</li>
+            </ol>
+            <p class="muted">
+              L idea migliore e partire dal minimo indispensabile e poi aggiungere ticket, verify,
+              whitelist, reaction roles, giveaway o Twitch in base al tipo di community.
+            </p>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Permessi consigliati per un uso completo</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Permesso</th>
+                  <th>Quando serve</th>
+                  <th>Perche</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-search-item="manage channels">
+                  <td>Gestisci canali</td>
+                  <td>Ticket, builder, backup, verify</td>
+                  <td>Per creare, aggiornare o riorganizzare canali e categorie.</td>
+                </tr>
+                <tr data-search-item="manage roles">
+                  <td>Gestisci ruoli</td>
+                  <td>Verify, reaction roles, whitelist, builder</td>
+                  <td>Per assegnare o rimuovere ruoli automaticamente.</td>
+                </tr>
+                <tr data-search-item="manage messages">
+                  <td>Gestisci messaggi</td>
+                  <td>Moderazione e pannelli</td>
+                  <td>Per purge, pannelli e gestione ordinata dei messaggi automatici.</td>
+                </tr>
+                <tr data-search-item="moderate members">
+                  <td>Modera membri</td>
+                  <td>Timeout e moderazione</td>
+                  <td>Per <code>/mute</code> e altri controlli staff.</td>
+                </tr>
+                <tr data-search-item="ban kick members">
+                  <td>Ban / Kick membri</td>
+                  <td>Moderazione</td>
+                  <td>Per usare ban e kick dal bot.</td>
+                </tr>
+                <tr data-search-item="webhook attach files">
+                  <td>Webhook / Allegati</td>
+                  <td>Branding, transcript, captcha</td>
+                  <td>Per avatar personalizzati, transcript HTML e immagini captcha.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+      </section>
+
+      <section class="doc-section" id="architecture" data-search-section="come funziona esperienza utente interazioni slash commands bottoni modali lingue branding">
+        <div class="section-head reveal">
+          <p class="eyebrow">How It Works</p>
+          <h3>Come funziona nel server</h3>
+        </div>
+
+        <div class="two-col">
+          <article class="panel reveal">
+            <h4>Esperienza d uso</h4>
+            <ul class="bullet-list">
+              <li>Il bot usa slash commands come punto di ingresso principale.</li>
+              <li>Molti moduli continuano con bottoni, menu e modali per ridurre i comandi lunghi.</li>
+              <li>Le azioni piu importanti vengono confermate con embed chiari e messaggi visibili solo a chi serve.</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h4>Personalizzazione per server</h4>
+            <ul class="bullet-list">
+              <li>Nome visuale, colore embed, icona e lingua possono cambiare per ogni server.</li>
+              <li>Quando possibile il bot pubblica con un aspetto coerente al branding della community.</li>
+              <li>Le lingue disponibili sono italiano, inglese e spagnolo.</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Interazioni supportate</h4>
+          <div class="pill-grid">
+            <span class="pill">Slash commands</span>
+            <span class="pill">Bottoni</span>
+            <span class="pill">Menu selezione</span>
+            <span class="pill">Modali</span>
+            <span class="pill">Messaggi automatici</span>
+            <span class="pill">DM</span>
+          </div>
+        </article>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal" data-search-item="bottoni modali menu autocomplete">
+            <h4>Interazioni veloci</h4>
+            <p>
+              Ticket, assistenza, verify, giveaway e whitelist usano pulsanti e modali per rendere il flusso piu guidato.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="branding webhook bot icon bot name">
+            <h4>Branding per server</h4>
+            <p>
+              Nome bot, footer e icona possono cambiare per guild. Quando possibile il bot usa webhook
+              per pubblicare messaggi con avatar e naming contestuali al server.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="lingue italiano inglese spagnolo">
+            <h4>Localizzazione</h4>
+            <p>
+              La stessa installazione del bot puo parlare lingue diverse a seconda del server configurato.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="conferme errori messaggi">
+            <h4>Feedback chiaro</h4>
+            <p>
+              Se qualcosa non va, il bot risponde con errori leggibili e in genere evita di sporcare i canali pubblici.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="premium" data-search-section="premium free base activate gestione license key moduli premium">
+        <div class="section-head reveal">
+          <p class="eyebrow">Licensing</p>
+          <h3>Free vs Premium</h3>
+        </div>
+
+        <div class="two-col">
+          <article class="panel reveal">
+            <h4>Base sempre disponibile</h4>
+            <ul class="bullet-list">
+              <li>Configurazione generale <code>/setup</code>.</li>
+              <li>Messaggi di benvenuto.</li>
+              <li>Moderazione classica.</li>
+              <li>Utility base: <code>/help</code>, <code>/ping</code>, <code>/userinfo</code>, <code>/serverinfo</code>.</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h4>Moduli premium disponibili</h4>
+            <div class="pill-grid">
+              <span class="pill" data-search-item="tickets premium">tickets</span>
+              <span class="pill" data-search-item="newsletter premium">newsletter</span>
+              <span class="pill" data-search-item="assistenza premium">assistenza</span>
+              <span class="pill" data-search-item="reactionroles premium">reactionroles</span>
+              <span class="pill" data-search-item="verify premium">verify</span>
+              <span class="pill" data-search-item="serverbuilder premium">serverbuilder</span>
+              <span class="pill" data-search-item="utility_plus premium">utility_plus</span>
+              <span class="pill" data-search-item="twitch premium">twitch</span>
+              <span class="pill" data-search-item="whitelist premium">whitelist</span>
+              <span class="pill" data-search-item="giveaway premium">giveaway</span>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Come funziona l attivazione</h4>
+          <ol class="number-list">
+            <li>Il proprietario del bot genera o gestisce le chiavi premium.</li>
+            <li>L admin del server usa <code>/activate key:&lt;CHIAVE&gt;</code>.</li>
+            <li>La chiave sblocca uno o piu moduli sul server corrente.</li>
+            <li>Da quel momento i comandi premium diventano utilizzabili nel server autorizzato.</li>
+          </ol>
+        </article>
+      </section>
+
+      <section class="doc-section" id="general-setup" data-search-section="setup configurazione generale welcome lingua icona colore nome bot log channel">
+        <div class="section-head reveal">
+          <p class="eyebrow">Core Config</p>
+          <h3>Configurazione generale del server</h3>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Comando <code>/setup</code></h4>
+          <div class="command-grid">
+            <article class="command-card" data-search-item="setup log-channel mod-log-channel">
+              <h5>Log e audit</h5>
+              <p><code>log-channel</code>, <code>mod-log-channel</code></p>
+              <span>Imposta canali testo per log generali e moderazione.</span>
+            </article>
+            <article class="command-card" data-search-item="setup welcome placeholders">
+              <h5>Welcome</h5>
+              <p><code>welcome</code></p>
+              <span>Canale, stato on/off e messaggio con placeholders.</span>
+            </article>
+            <article class="command-card" data-search-item="setup colore nome-bot icona lingua">
+              <h5>Branding</h5>
+              <p><code>colore</code>, <code>nome-bot</code>, <code>icona</code>, <code>lingua</code></p>
+              <span>Personalizza embed color, footer name, avatar e lingua.</span>
+            </article>
+            <article class="command-card" data-search-item="setup visualizza">
+              <h5>Stato</h5>
+              <p><code>visualizza</code></p>
+              <span>Mostra il riepilogo delle impostazioni attive della guild.</span>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <h4>Placeholder supportati</h4>
+          <div class="pill-grid">
+            <span class="pill">{user}</span>
+            <span class="pill">{username}</span>
+            <span class="pill">{server}</span>
+            <span class="pill">{membercount}</span>
+          </div>
+          <p class="muted">
+            Il sistema welcome usa questi segnaposto per costruire messaggi e embed contestuali all utente
+            che entra nel server.
+          </p>
+        </article>
+      </section>
+
+      <section class="doc-section" id="moderation" data-search-section="moderation ban kick mute warn unban unmute purge slowmode modlog warnings clearwarns">
+        <div class="section-head reveal">
+          <p class="eyebrow">Moderation</p>
+          <h3>Moderazione e storico azioni</h3>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal" data-search-item="ban kick mute unban unmute">
+            <h4>Azioni dirette</h4>
+            <p>
+              <code>/ban</code>, <code>/kick</code>, <code>/mute</code>, <code>/unban</code>,
+              <code>/unmute</code> rispettano gerarchie ruoli e possono notificare l utente.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="warn warnings clearwarns">
+            <h4>Warnings separati</h4>
+            <p>
+              Gli avvisi restano separati dallo storico generale, cosi lo staff puo distinguere i warn dalle altre azioni.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="purge slowmode">
+            <h4>Gestione canali</h4>
+            <p>
+              <code>/purge</code> elimina fino a 100 messaggi per batch, anche filtrando per utente.
+              <code>/slowmode</code> modifica il cooldown del canale corrente.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="modlog moderation history">
+            <h4>Storico consultabile</h4>
+            <p>
+              <code>/modlog</code> e <code>/warnings</code> aiutano lo staff a tenere traccia delle azioni gia fatte.
+            </p>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Reference rapida</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Scopo</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-search-item="ban giorni-messaggi">
+                  <td><code>/ban</code></td>
+                  <td>Ban utente</td>
+                  <td>Supporta motivo e giorni di messaggi da rimuovere.</td>
+                </tr>
+                <tr data-search-item="kick">
+                  <td><code>/kick</code></td>
+                  <td>Espulsione</td>
+                  <td>Motivo opzionale.</td>
+                </tr>
+                <tr data-search-item="mute timeout durata">
+                  <td><code>/mute</code></td>
+                  <td>Timeout temporaneo</td>
+                  <td>Durata in formato <code>10m</code>, <code>1h</code>, <code>1d</code>, <code>7d</code>.</td>
+                </tr>
+                <tr data-search-item="unmute unban">
+                  <td><code>/unmute</code>, <code>/unban</code></td>
+                  <td>Revoche</td>
+                  <td>Revocano timeout e ban.</td>
+                </tr>
+                <tr data-search-item="warn warnings clearwarns">
+                  <td><code>/warn</code>, <code>/warnings</code>, <code>/clearwarns</code></td>
+                  <td>Avvisi</td>
+                  <td>Rimozione per singolo ID o reset completo.</td>
+                </tr>
+                <tr data-search-item="purge slowmode modlog">
+                  <td><code>/purge</code>, <code>/slowmode</code>, <code>/modlog</code></td>
+                  <td>Canale e audit</td>
+                  <td>Bulk delete, cooldown e log azioni per utente.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="tickets" data-search-section="tickets ticket-config ticket-category ticketmsg transcript claim add user reminder">
+        <div class="section-head reveal">
+          <p class="eyebrow">Premium Module</p>
+          <h3>Sistema ticket</h3>
+        </div>
+
+        <div class="two-col">
+          <article class="panel reveal">
+            <h4>Capacita principali</h4>
+            <ul class="bullet-list">
+              <li>Categorie multiple, ognuna pubblicata come bottone nel pannello ticket.</li>
+              <li>Ruoli staff e categoria Discord dedicata per singola categoria.</li>
+              <li>Messaggio iniziale personalizzato per categoria.</li>
+              <li>Claim ticket, aggiunta utenti, rename canale e chiusura confermata.</li>
+              <li>Transcript HTML automatico su canale log e opzionalmente in DM al creator.</li>
+              <li>Reminder automatici per ticket aperti.</li>
+              <li>Formato nome canale personalizzabile.</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h4>Flow utente/staff</h4>
+            <ol class="number-list">
+              <li><code>/ticketmsg</code> pubblica il pannello.</li>
+              <li>L utente clicca il bottone generale o di categoria.</li>
+              <li>Il bot apre il canale dedicato e invia il messaggio iniziale.</li>
+              <li>Lo staff puo claimare, aggiungere utenti o rinominare il ticket.</li>
+              <li>Alla chiusura viene generato transcript e aggiornato lo stato.</li>
+            </ol>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Comandi del modulo</h4>
+          <div class="command-grid">
+            <article class="command-card" data-search-item="ticket-config log-channel categoria ruolo-supporto messaggio trascrizione dm-trascrizione promemoria formato-nome visualizza">
+              <h5><code>/ticket-config</code></h5>
+              <span>Configura log, categoria, ruolo supporto, messaggio, transcript, reminder e naming format.</span>
+            </article>
+            <article class="command-card" data-search-item="ticket-category aggiungi rimuovi lista">
+              <h5><code>/ticket-category</code></h5>
+              <span>Aggiunge categorie con emoji, ruoli, sezione Discord, colore bottone e limite ticket aperti.</span>
+            </article>
+            <article class="command-card" data-search-item="ticketmsg titolo descrizione colore immagine thumbnail">
+              <h5><code>/ticketmsg</code></h5>
+              <span>Pubblica il pannello ticket con embed personalizzabile nel canale corrente.</span>
+            </article>
+            <article class="command-card" data-search-item="ticket-add ticket-rinomina ticket-stats">
+              <h5>Operativi</h5>
+              <span><code>/ticket-add</code>, <code>/ticket-rinomina</code>, <code>/ticket-stats</code> per gestione live dei canali ticket.</span>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <h4>Placeholder del ticket welcome</h4>
+          <div class="pill-grid">
+            <span class="pill">{user}</span>
+            <span class="pill">{username}</span>
+            <span class="pill">{server}</span>
+            <span class="pill">{category}</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="assistenza" data-search-section="assistenza support requests assistenza-config assistenza-stats cooldown reminder claim feedback">
+        <div class="section-head reveal">
+          <p class="eyebrow">Premium Module</p>
+          <h3>Assistenza strutturata</h3>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal" data-search-item="assistenza subject description priority">
+            <h4>Richiesta via slash command</h4>
+            <p>
+              <code>/assistenza</code> raccoglie oggetto, descrizione e priorita; poi crea un item staff con pulsanti.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="claim close feedback">
+            <h4>Workflow staff</h4>
+            <p>
+              Pulsanti <code>claim</code>, <code>close</code>, conferma chiusura e raccolta feedback via modal.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="cooldown max richieste promemoria">
+            <h4>Controlli anti abuso</h4>
+            <p>
+              Cooldown tra richieste, massimo aperte per utente e reminder automatici su pending / claimed.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="assistenza-config visualizza">
+            <h4>Configurazione server</h4>
+            <p>
+              <code>/assistenza-config</code> imposta abilitazione, canali, ruolo staff, limiti, messaggi e promemoria.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="newsletter" data-search-section="newsletter newsletter-history scanuser recipients role list dm channel embed autocomplete">
+        <div class="section-head reveal">
+          <p class="eyebrow">Premium Module</p>
+          <h3>Newsletter e scan list</h3>
+        </div>
+
+        <div class="two-col">
+          <article class="panel reveal">
+            <h4><code>/newsletter</code></h4>
+            <ul class="bullet-list">
+              <li>Invio verso un ruolo o una lista salvata con <code>/scanuser</code>.</li>
+              <li>Modalita DM oppure pubblicazione in canale.</li>
+              <li>Supporto titolo, colore, immagini, thumbnail, footer, URL, mention ruolo, embed on/off.</li>
+              <li>Progress tracking durante gli invii massivi.</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h4><code>/scanuser</code> owner-only</h4>
+            <ul class="bullet-list">
+              <li><code>scansiona</code>: salva una lista utenti riusabile anche da guild sorgente diversa.</li>
+              <li><code>liste</code>: mostra le liste disponibili.</li>
+              <li><code>vedi</code>: esporta gli utenti in JSON.</li>
+              <li><code>elimina</code>: rimuove la lista.</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Persistenza</h4>
+          <p>
+            Le newsletter vanno in <code>newsletters</code>, mentre le liste utenti sono spezzate tra
+            <code>scan_lists</code> e <code>scan_list_users</code>. Lo storico si consulta con
+            <code>/newsletter-history</code>.
+          </p>
+        </article>
+      </section>
+
+      <section class="doc-section" id="roles-access" data-search-section="reaction roles verify captcha access security role panels">
+        <div class="section-head reveal">
+          <p class="eyebrow">Access</p>
+          <h3>Ruoli automatici e verifica</h3>
+        </div>
+
+        <div class="two-col">
+          <article class="panel reveal">
+            <h4>Reaction roles</h4>
+            <ul class="bullet-list">
+              <li><code>/reactionrole aggiungi</code> collega emoji e ruolo a un messaggio esistente.</li>
+              <li><code>/reactionrole pannello</code> crea un panel nuovo con bottoni o reazioni emoji.</li>
+              <li>Modalita: <code>toggle</code>, <code>add</code>, <code>unique</code>.</li>
+              <li>Listing e cleanup via <code>lista</code> e <code>rimuovi</code>.</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h4>Verifica captcha</h4>
+            <ul class="bullet-list">
+              <li><code>/verify-config</code> gestisce enable, ruolo verificato, canale, log, timeout e kick on fail.</li>
+              <li>Captcha immagine da 6 caratteri con verifica guidata.</li>
+              <li>Flow ephemeral con modal input, refresh captcha e massimo 3 tentativi.</li>
+              <li>Supporta invio pannello dedicato con <code>pannello</code>.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="live-growth" data-search-section="twitch giveaway live notifications community engagement">
+        <div class="section-head reveal">
+          <p class="eyebrow">Growth</p>
+          <h3>Twitch live e giveaway</h3>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal" data-search-item="twitch-config aggiungi rimuovi lista">
+            <h4>Twitch notifications</h4>
+            <p>
+              <code>/twitch-config</code> monitora piu streamer per guild, con canale target, ruolo ping,
+              messaggio custom e protezione duplicati via <code>last_stream_id</code>.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="twitch scheduler 60 seconds">
+            <h4>Scheduler live ogni 60 secondi</h4>
+            <p>
+              Il modulo controlla automaticamente gli streamer monitorati e invia l annuncio live nel canale scelto.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="giveaway crea termina reroll lista elimina">
+            <h4>Giveaway system</h4>
+            <p>
+              <code>/giveaway</code> supporta create, manual end, reroll, list e delete con premi,
+              durata, ruolo richiesto, embed brandizzato e numero vincitori.
+            </p>
+          </article>
+          <article class="feature-card reveal" data-search-item="giveaway join leave buttons winners">
+            <h4>Join / Leave tramite bottoni</h4>
+            <p>
+              Le partecipazioni vengono salvate in <code>giveaway_entries</code>; alla chiusura il bot
+              aggiorna il messaggio, annuncia i vincitori e prova a inviare DM.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="applications" data-search-section="whitelist applications server builder backup nuke structure guild templates">
+        <div class="section-head reveal">
+          <p class="eyebrow">Applications & Ops</p>
+          <h3>Whitelist, builder e strumenti server</h3>
+        </div>
+
+        <div class="two-col">
+          <article class="panel reveal">
+            <h4>Whitelist / application system</h4>
+            <ul class="bullet-list">
+              <li><code>/whitelist-config</code> imposta canale review, reviewer role, approved role, pannello e DM templates.</li>
+              <li><code>/whitelist-domanda</code> aggiunge, lista, resetta o rimuove fino a 5 domande form.</li>
+              <li><code>/whitelist-panel</code> invia il bottone <code>Apply</code>.</li>
+              <li>Review staff con bottoni approve / reject e assegnazione ruolo automatica.</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h4>Server builder</h4>
+            <ul class="bullet-list">
+              <li><code>/server-builder preset</code>, <code>configura</code>, <code>crea</code>, <code>anteprima</code>, <code>guida</code>, <code>reset</code>.</li>
+              <li>Supporta formato rapido con categorie <code>[Nome]</code>, testuali <code>#</code>, vocali <code>+</code>.</li>
+              <li>Tag rapidi: <code>private</code>, <code>public</code>, <code>readonly</code>, <code>nsfw</code>, <code>show[]</code>, <code>hide[]</code>, <code>slowmode[]</code>, <code>limit[]</code>.</li>
+              <li>Riusa canali esistenti quando possibile e riallinea permessi.</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Utility avanzate di struttura</h4>
+          <div class="command-grid">
+            <article class="command-card" data-search-item="serverbackup salva applica lista elimina">
+              <h5><code>/serverbackup</code></h5>
+              <span>Salva e ripristina template completi di ruoli, categorie, canali e permission overwrites.</span>
+            </article>
+            <article class="command-card" data-search-item="nuke destructive">
+              <h5><code>/nuke</code></h5>
+              <span>Comando distruttivo owner-only per svuotare canali e ruoli, conferma esplicita <code>NUKE</code>.</span>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="ops" data-search-section="owner admin botadmin gestione activate blocked guilds premium keys serverbackup nuke">
+        <div class="section-head reveal">
+          <p class="eyebrow">Operations</p>
+          <h3>Comandi owner e amministrazione bot</h3>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal" data-search-item="activate">
+            <h4><code>/activate</code></h4>
+            <p>Usato dagli admin di una guild per applicare una licenza premium valida.</p>
+          </article>
+          <article class="feature-card reveal" data-search-item="gestione premium keys abilita disabilita stato lista genera-key lista-key elimina-key">
+            <h4><code>/gestione</code></h4>
+            <p>Suite owner-only per abilitare feature, generare chiavi, vedere stato premium e gestire licenze.</p>
+          </article>
+          <article class="feature-card reveal" data-search-item="botadmin blocca sblocca lista blocked guilds">
+            <h4><code>/botadmin</code></h4>
+            <p>Blocca o sblocca server dall uso del bot. E un comando riservato al proprietario del servizio.</p>
+          </article>
+          <article class="feature-card reveal" data-search-item="owner only hidden commands">
+            <h4>Comandi nascosti all utenza normale</h4>
+            <p>Alcuni strumenti esistono solo per il proprietario del bot e non fanno parte dell uso quotidiano del server.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="automation" data-search-section="automation schedulers reminder twitch giveaway automatiche presence">
+        <div class="section-head reveal">
+          <p class="eyebrow">Automation</p>
+          <h3>Funzioni automatiche</h3>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Cosa fa il bot da solo</h4>
+          <ul class="bullet-list">
+            <li>Invia reminder periodici per ticket e richieste assistenza aperte.</li>
+            <li>Controlla gli streamer Twitch monitorati e pubblica la notifica quando vanno live.</li>
+            <li>Chiude automaticamente i giveaway scaduti e annuncia i vincitori.</li>
+            <li>Aggiorna ciclicamente lo stato del bot con messaggi informativi.</li>
+          </ul>
+        </article>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal" data-search-item="welcome automatico ingresso membri">
+            <h4>Ingresso membri</h4>
+            <p>Quando entra un nuovo membro, il bot puo inviare il messaggio di benvenuto gia configurato.</p>
+          </article>
+          <article class="feature-card reveal" data-search-item="reaction roles reazioni">
+            <h4>Sync reaction roles</h4>
+            <p>Eventi dedicati aggiungono o rimuovono ruoli quando l interazione avviene con reazioni classiche.</p>
+          </article>
+          <article class="feature-card reveal" data-search-item="inizializzazione nuovo server">
+            <h4>Pronto anche sui nuovi server</h4>
+            <p>Quando il bot entra in un server nuovo puo partire subito con la configurazione base del sistema.</p>
+          </article>
+          <article class="feature-card reveal" data-search-item="autocomplete">
+            <h4>Autocomplete</h4>
+            <p>Alcuni comandi come giveaway e scanuser espongono autocomplete lato Discord per velocizzare la UX.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="database" data-search-section="dati salvati privacy cronologia ticket assistenza newsletter giveaway whitelist moderazione">
+        <div class="section-head reveal">
+          <p class="eyebrow">Data & Privacy</p>
+          <h3>Quali dati salva il bot</h3>
+        </div>
+
+        <article class="panel reveal">
+          <h4>In pratica</h4>
+          <p>
+            Il bot salva solo i dati necessari a far funzionare i moduli: configurazioni del server,
+            storico operativo e contenuti generati dalle funzioni attive. Questo permette di non perdere
+            setup, log e stati tra un riavvio e l altro.
+          </p>
+        </article>
+
+        <div class="db-grid">
+          <article class="db-card reveal" data-search-item="configurazioni server welcome branding lingua">
+            <h5>Configurazioni server</h5>
+            <p>Canali log, welcome, branding, lingua, colori e impostazioni principali del bot.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="ticket transcript categorie">
+            <h5>Ticket</h5>
+            <p>Ticket aperti o chiusi, categorie, claim, transcript e preferenze del modulo.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="moderazione warn modlog">
+            <h5>Moderazione</h5>
+            <p>Warnings, ban, kick, mute e storico azioni staff.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="newsletter liste utenti">
+            <h5>Newsletter</h5>
+            <p>Storico invii, liste destinatari e dati necessari alle campagne.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="assistenza richieste feedback">
+            <h5>Assistenza</h5>
+            <p>Richieste aperte, stato, feedback, limiti e reminder del sistema helpdesk.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="reaction roles verify captcha">
+            <h5>Ruoli e verifica</h5>
+            <p>Pannelli reaction role, impostazioni captcha e regole per assegnare ruoli automaticamente.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="builder backup template server">
+            <h5>Builder e backup</h5>
+            <p>Template di struttura server, snapshot di backup e configurazioni riutilizzabili.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="premium licenze stato server">
+            <h5>Premium</h5>
+            <p>Stato premium del server e moduli attivi necessari per abilitare i comandi sbloccati.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="giveaway partecipazioni vincitori">
+            <h5>Giveaway</h5>
+            <p>Giveaway creati, partecipanti, scadenze e vincitori estratti.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="twitch streamer live">
+            <h5>Twitch</h5>
+            <p>Streamer monitorati, canali di notifica, ruoli ping e storico minimo per evitare duplicati.</p>
+          </article>
+          <article class="db-card reveal" data-search-item="whitelist application domande candidature">
+            <h5>Whitelist</h5>
+            <p>Domande del form, candidature inviate e stato della review staff.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="commands" data-search-section="commands slash command reference list">
+        <div class="section-head reveal">
+          <p class="eyebrow">Reference</p>
+          <h3>Reference completa dei comandi</h3>
+        </div>
+
+        <article class="panel reveal">
+          <h4>Utility e core</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Categoria</th>
+                  <th>Accesso</th>
+                  <th>Descrizione</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-search-item="setup"><td><code>/setup</code></td><td>settings</td><td>Admin</td><td>Configurazione generale del bot.</td></tr>
+                <tr data-search-item="activate"><td><code>/activate</code></td><td>settings</td><td>Admin</td><td>Applica una chiave premium.</td></tr>
+                <tr data-search-item="help"><td><code>/help</code></td><td>utility</td><td>Pubblico</td><td>Browser comandi disponibile.</td></tr>
+                <tr data-search-item="ping"><td><code>/ping</code></td><td>utility</td><td>Pubblico</td><td>Latenza e stato bot.</td></tr>
+                <tr data-search-item="userinfo"><td><code>/userinfo</code></td><td>utility</td><td>Pubblico</td><td>Informazioni su un utente.</td></tr>
+                <tr data-search-item="serverinfo"><td><code>/serverinfo</code></td><td>utility</td><td>Pubblico</td><td>Statistiche server.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <h4>Moderazione</h4>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr data-search-item="ban"><td><code>/ban</code></td><td>Banna un utente con motivo e cleanup messaggi.</td></tr>
+                <tr data-search-item="unban"><td><code>/unban</code></td><td>Rimuove il ban usando user ID.</td></tr>
+                <tr data-search-item="kick"><td><code>/kick</code></td><td>Espelle un utente.</td></tr>
+                <tr data-search-item="mute"><td><code>/mute</code></td><td>Applica timeout temporaneo.</td></tr>
+                <tr data-search-item="unmute"><td><code>/unmute</code></td><td>Rimuove il timeout.</td></tr>
+                <tr data-search-item="warn"><td><code>/warn</code></td><td>Registra un warning.</td></tr>
+                <tr data-search-item="warnings"><td><code>/warnings</code></td><td>Lista warning utente.</td></tr>
+                <tr data-search-item="clearwarns"><td><code>/clearwarns</code></td><td>Cancella uno o tutti i warning.</td></tr>
+                <tr data-search-item="purge slowmode modlog"><td><code>/purge</code>, <code>/slowmode</code>, <code>/modlog</code></td><td>Bulk delete, cooldown canale e log moderazione.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <h4>Moduli premium</h4>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr data-search-item="ticket-config ticket-category ticketmsg ticket-add ticket-rinomina ticket-stats"><td><code>/ticket-config</code>, <code>/ticket-category</code>, <code>/ticketmsg</code>, <code>/ticket-add</code>, <code>/ticket-rinomina</code>, <code>/ticket-stats</code></td><td>Ticket system.</td></tr>
+                <tr data-search-item="assistenza assistenza-config assistenza-stats"><td><code>/assistenza</code>, <code>/assistenza-config</code>, <code>/assistenza-stats</code></td><td>Richieste assistenza e analytics.</td></tr>
+                <tr data-search-item="newsletter newsletter-history scanuser"><td><code>/newsletter</code>, <code>/newsletter-history</code>, <code>/scanuser</code></td><td>Campagne e recipient lists.</td></tr>
+                <tr data-search-item="reactionrole"><td><code>/reactionrole</code></td><td>Pannelli ruoli con emoji o bottoni.</td></tr>
+                <tr data-search-item="verify-config"><td><code>/verify-config</code></td><td>Captcha verification.</td></tr>
+                <tr data-search-item="twitch-config"><td><code>/twitch-config</code></td><td>Notifiche live Twitch.</td></tr>
+                <tr data-search-item="giveaway"><td><code>/giveaway</code></td><td>Creazione e gestione giveaway.</td></tr>
+                <tr data-search-item="whitelist-config whitelist-domanda whitelist-panel"><td><code>/whitelist-config</code>, <code>/whitelist-domanda</code>, <code>/whitelist-panel</code></td><td>Whitelist/application flow.</td></tr>
+                <tr data-search-item="server-builder"><td><code>/server-builder</code></td><td>Template e builder server.</td></tr>
+                <tr data-search-item="serverbackup nuke"><td><code>/serverbackup</code>, <code>/nuke</code></td><td>Backup e strumenti distruttivi owner-oriented.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <h4>Owner / private operations</h4>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr data-search-item="botadmin"><td><code>/botadmin</code></td><td>Blocca, sblocca o lista guild bloccate.</td></tr>
+                <tr data-search-item="gestione"><td><code>/gestione</code></td><td>Abilita/disabilita premium, stato, lista guild, key management.</td></tr>
+                <tr data-search-item="scanuser owner-only"><td><code>/scanuser</code></td><td>Disponibile solo al proprietario del bot.</td></tr>
+                <tr data-search-item="serverbackup nuke owner-only"><td><code>/serverbackup</code>, <code>/nuke</code></td><td>Nel codice risultano comandi pensati per owner / deployment gestito.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="./assets/app.js"></script>
+</body>
+</html>
